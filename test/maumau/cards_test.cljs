@@ -31,3 +31,24 @@
   (testing "card order is random"
     (is (not= (cards/generate-shuffled-deck)
               (cards/generate-shuffled-deck)))))
+
+(deftest draw
+  (let [draw-number 5
+        pile (cards/generate-shuffled-deck)
+        [drawn-hand new-pile :as draw-result] (cards/draw draw-number pile)]
+
+    (testing "returns a two element vector"
+      (is (vector? draw-result))
+      (is (= (count draw-result) 2)))
+
+    (testing "first element are the drawn cards"
+      (is (= (count drawn-hand) draw-number))
+      (is (every? #(instance? cards/Card %1) drawn-hand)))
+
+    (testing "second element is the new pile"
+      (is (= (count new-pile)
+             (- (count pile) draw-number)))
+      (is (every? #(instance? cards/Card %1) new-pile)))
+
+    (testing "drawn cards are not in new pile"
+      (is (not-any? #(contains? (set new-pile) %1) drawn-hand)))))

@@ -13,3 +13,6 @@
    (for [rank ranks
          suit suits]
      (Card. rank suit))))
+
+(defn draw [n pile]
+  (split-at n pile))

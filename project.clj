@@ -24,6 +24,11 @@
                            :output-to "resources/public/js/compiled/maumau.js"
                            :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true}}
+               {:id "test"
+                :source-paths ["src" "test"]
+                :compiler {:main 'utils.runner
+                           :output-to "resources/public/js/compiled/tests.js"
+                           :optimizations :none}}
                ;; This next build is an compressed minified build for
                ;; production. You can build this with:
                ;; lein cljsbuild once min

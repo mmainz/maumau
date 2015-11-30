@@ -1,12 +1,13 @@
 (ns maumau.core
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [maumau.cards :as cards]))
+            [maumau.cards :as cards]
+            [maumau.game :as game]))
 
 (enable-console-print!)
 
 (defonce app-state
-  (atom {:drawing-stack (cards/generate-shuffled-deck)}))
+  (atom {:game-state (game/init-game-state 2)}))
 
 (om/root
  (fn [data owner]

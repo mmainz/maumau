@@ -9,6 +9,9 @@
   #{:clubs :diamonds :hearts :spades})
 
 (deftest generate-shuffled-deck
+  (testing "returns a list"
+    (is (list? (cards/generate-shuffled-deck))))
+
   (testing "returns a collection of Card records"
     (is (every? #(instance? cards/Card %1)
                 (cards/generate-shuffled-deck))))
@@ -42,10 +45,12 @@
       (is (= (count draw-result) 2)))
 
     (testing "first element are the drawn cards"
+      (is (vector? drawn-hand))
       (is (= (count drawn-hand) draw-number))
       (is (every? #(instance? cards/Card %1) drawn-hand)))
 
     (testing "second element is the new pile"
+      (is (list? new-pile))
       (is (= (count new-pile)
              (- (count pile) draw-number)))
       (is (every? #(instance? cards/Card %1) new-pile)))

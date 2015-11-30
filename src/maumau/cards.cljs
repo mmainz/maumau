@@ -9,10 +9,13 @@
 (defrecord Card [rank suit])
 
 (defn generate-shuffled-deck []
-  (shuffle
-   (for [rank ranks
-         suit suits]
-     (Card. rank suit))))
+  (apply list
+        (shuffle
+         (for [rank ranks
+               suit suits]
+           (Card. rank suit)))))
 
 (defn draw [n pile]
-  (split-at n pile))
+  (let [drawn-hand (vec (take n pile))
+        new-pile (apply list (drop n pile))]
+    [drawn-hand new-pile]))

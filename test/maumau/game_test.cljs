@@ -13,10 +13,12 @@
       (is (= (:playing-pile game-state) '())))
 
     (testing "generates player states"
-      (is (contains? game-state :players))
-      (is (vector? (:players game-state)))
-      (is (= (count (:players game-state)) 3))
-      (is (every? #(= {:hand []} %) (:players game-state))))))
+      (let [players (:players game-state)]
+        (is (contains? game-state :players))
+        (is (vector? players))
+        (is (= (count players) 3))
+        (is (every? #(= {:hand []} %) (map #(select-keys % [:hand]) players)))
+        (is (= (map :player-number players) [1 2 3]))))))
 
 (deftest draw-hand-for-player
   (let [game-state (game/init-game-state 4)]

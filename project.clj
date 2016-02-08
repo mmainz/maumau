@@ -2,11 +2,14 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.7.228"]
                  [org.clojure/core.async "0.2.374"]
-                 [org.omcljs/om "1.0.0-alpha30"]]
+                 [org.omcljs/om "1.0.0-alpha30"]
+                 [prismatic/schema "1.0.4"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.0-1"]
             [lein-doo "0.1.4"]]
+
+  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]]}}
 
   :source-paths ["src"]
 

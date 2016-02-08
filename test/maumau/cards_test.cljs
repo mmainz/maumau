@@ -1,6 +1,9 @@
 (ns maumau.cards-test
   (:require [maumau.cards :as cards]
-            [cljs.test :as t :refer-macros [deftest testing is]]))
+            [cljs.test :as t :refer-macros [deftest testing is]]
+            [schema.test :as stest :include-macros true]))
+
+(t/use-fixtures :once stest/validate-schemas)
 
 (def valid-card-ranks
   #{:2 :3 :4 :5 :6 :7 :8 :9 :10 :joker :queen :king :ace})

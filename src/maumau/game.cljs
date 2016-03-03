@@ -4,7 +4,7 @@
 (defn init-game-state [number-of-players]
   {:drawing-pile (cards/generate-shuffled-deck)
    :playing-pile '()
-   :players (vec (map (fn [number] {:hand [] :player-number (inc number)})
+   :players (vec (map (fn [number] {:hand [] :player-number number})
                       (range number-of-players)))})
 
 (defn draw-hand-for-player [game-state player-number]

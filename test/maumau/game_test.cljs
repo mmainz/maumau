@@ -18,7 +18,7 @@
         (is (vector? players))
         (is (= (count players) 3))
         (is (every? #(= {:hand []} %) (map #(select-keys % [:hand]) players)))
-        (is (= (map :player-number players) [1 2 3]))))))
+        (is (= (map :player-number players) [0 1 2]))))))
 
 (deftest draw-hand-for-player
   (let [game-state (game/init-game-state 4)]

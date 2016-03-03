@@ -42,6 +42,13 @@
 (def card (om/factory Card {:keyfn (fn [card]
                                      (str (:rank card) (:suit card)))}))
 
+(defn draw-hand [player-number]
+  (swap! app-state
+         update-in
+         [:game-state]
+         game/draw-hand-for-player
+         player-number))
+
 (defui Player
   Object
   (render [this]
@@ -49,7 +56,10 @@
                 hand (:hand (om/props this))]
             (html
              [:div
-              [:h1 (str "Player " player-number)]
+              [:h1 (str "Player " (inc player-number))]
+              [:span [:button {:disabled (not-empty hand)
+                               :on-click #(draw-hand player-number)}
+                      "Draw hand"]]
               [:ul (map card hand)]]))))
 
 (def player (om/factory Player {:keyfn :player-number}))

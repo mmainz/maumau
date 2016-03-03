@@ -3,7 +3,8 @@
                  [org.clojure/clojurescript "1.7.228"]
                  [org.clojure/core.async "0.2.374"]
                  [org.omcljs/om "1.0.0-alpha30"]
-                 [prismatic/schema "1.0.4"]]
+                 [sablono "0.6.2"]
+                 [prismatic/schema "1.0.5"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.0-1"]
